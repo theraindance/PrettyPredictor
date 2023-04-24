@@ -27,7 +27,7 @@ public class FbTrackerController {
     @Autowired
     private static XGScraper scraper;
     
-    @GetMapping("/")
+    @GetMapping("/home")
     public static String home(Model model) {
         List<XGScraper.TeamData> teamDataList = XGScraper.scrape();
         model.addAttribute("teamDataList", teamDataList);

@@ -2,7 +2,7 @@ package com.miniproject.football.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.SecureRandom;
+// import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,13 +57,13 @@ public class PredictMachine {
         trainModel(100, 0.001, dataSet);
     }
 
-    public class RandomUtil {
-        public static long generateSeed() {
-            SecureRandom secureRandom = new SecureRandom();
-            byte[] seedBytes = secureRandom.generateSeed(Long.BYTES);
-            return java.nio.ByteBuffer.wrap(seedBytes).getLong();
-        }
-    }
+    // public class RandomUtil {
+    //     public static long generateSeed() {
+    //         SecureRandom secureRandom = new SecureRandom();
+    //         byte[] seedBytes = secureRandom.generateSeed(Long.BYTES);
+    //         return java.nio.ByteBuffer.wrap(seedBytes).getLong();
+    //     }
+    // }
 
     private DataSet loadData() {
         DataSet dataSet = null;
@@ -159,7 +159,7 @@ public class PredictMachine {
             
                 // Define the neural network architecture
                 MultiLayerConfiguration config = new NeuralNetConfiguration.Builder()
-                        .seed(RandomUtil.generateSeed())
+                        // .seed(RandomUtil.generateSeed())
                         .updater(new Adam())
                         .list()
                         .layer(new DenseLayer.Builder()
