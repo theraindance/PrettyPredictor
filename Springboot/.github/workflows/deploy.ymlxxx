@@ -1,0 +1,7 @@
+- name: Deploy to Vercel
+  uses: amondnet/vercel-action@v20
+  with:
+    vercel_token: ${{ secrets.VERCEL_TOKEN }}
+    vercel_org_id: dOAHRINe71cB8lLfrw3Ha440
+    vercel_project_id: prj_s6L4yrjyoIYvCoo5FCrcH687cRZa
+    args: --prod

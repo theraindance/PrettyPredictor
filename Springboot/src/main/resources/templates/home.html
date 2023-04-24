@@ -1,0 +1,66 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Prediction</title>
+</head>
+<body>
+    <h1>Match Prediction</h1>
+    <form method="post" action="/result">
+        <label for="homeTeam">Please enter the Home Team:</label>
+        <input type="text" id="homeTeam" name="homeTeam">
+        <br><br>
+        <label for="awayTeam">Please enter the Away Team:</label>
+        <input type="text" id="awayTeam" name="awayTeam">
+        <br><br>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&family=Happy+Monkey&family=Rubik+Marker+Hatch&family=Silkscreen&family=Vast+Shadow&display=swap" rel="stylesheet">
+
+    <style>
+        h4 {font-family: 'Vast Shadow', cursive;}
+        h6 {font-family: 'Happy Monkey', cursive;}
+        h1 {font-family: 'Faster One', cursive;}
+        h1 {text-shadow: 5px 5px 3px #0b1501;}
+    </style>
+    <title>Match Prediction</title>
+</head>
+<body>
+    <h1>Match Prediction</h1>
+    <form method="post" action="/results">
+        <label for="homeTeam">Please select the Home Team:</label>
+        <select id="homeTeam" name="homeTeam">
+            <option th:each="teamData : ${teamDataList}" th:value="${teamData.teamName}" th:text="${teamData.teamName}"></option>
+        </select>        
+        <br><br>
+        <label for="awayTeam">Please select the Away Team:</label>
+        <select id="awayTeam" name="awayTeam">
+            <option th:each="teamData : ${teamDataList}" th:value="${teamData.teamName}" th:text="${teamData.teamName}"></option>
+        </select>
+        <br><br>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
+

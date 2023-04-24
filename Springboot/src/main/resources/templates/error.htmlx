@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HTML Meta Tag</title>
+        <meta http-equiv = "refresh" content = "0; url = home" />
+     </head>
+    <body oncopy="return false" onpaste="return false" oncut="return false">
+    </body>
+</html>

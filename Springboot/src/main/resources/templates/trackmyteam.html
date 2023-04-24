@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&family=Happy+Monkey&family=Rubik+Marker+Hatch&family=Silkscreen&family=Vast+Shadow&display=swap" rel="stylesheet">
+
+    <style>
+        h4 {font-family: 'Vast Shadow', cursive;}
+        h6 {font-family: 'Happy Monkey', cursive;}
+        h1 {font-family: 'Faster One', cursive;}
+        h1 {text-shadow: 5px 5px 3px #0b1501;}
+    </style>
+
+    <title>FB Tracker</title>
+</head>
+
+<body th:object="${user}" oncopy="return false" onpaste="return false" oncut="return false">
+        <!-- <div style="position: fixed; z-index: -99; width: 100%; height: 100%">
+            <iframe height="100%" width="100%" 
+                src="https://www.youtube.com/embed/5fJ4HNsiRDk?controls=0&loop=1&autoplay=1&mute=1&playlist=5fJ4HNsiRDk" 
+                title="YouTube video player" 
+                frameborder="0"
+                allow="autoplay;" allowfullscreen></iframe>
+        
+        </div> -->
+        <div class="container-fluid py-4">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-lg-8 col-xl-6">
+                    <div class="card" style="border-radius: 25px;">
+                        <div class="w-100 bg-success text-white" style="border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem;">
+                            <div class="text-center">
+
+                            <h3>Favourite Team: <label th:text="${HomeTeam}"></label> Tracker</h3>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <!-- <div class="row justify-content-center align-items-center"> -->
+                    <div class="d-flex justify-content-md-center mb-3">
+                        <div class="col-md-8 mb-2">
+                            <!-- md adjust width -->
+                            <span>Hello </span><label th:text="${name}"></label><p></p>
+                            <!-- <span>E-mail: </span><label th:text="${email}"></label><p></p> -->
+                            <span>Here are </span><label th:text="${HomeTeam}"></label><span>'s latest Premier League results </span><p></p>
+                            </br>
+                            <!-- <script>var mytable = "<table cellpadding=\"0\" cellspacing=\"0\"><tbody><tr>";
+
+                                for (var i = 1; i < 31; i++) {
+                                  if (i % 3 == 1 && i != 1) {
+                                    mytable += "</tr><tr>";
+                                  }
+                                  mytable += "<td>[" + i + "]</td>";
+                                }
+                                
+                                mytable += "</tr></tbody></table>";
+                                
+                                document.write(mytable);</script> -->
+
+                            <table class="table">
+                                
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Match Number</th>
+                                    <th scope="col">Home</th>
+                                    <th scope="col">Score</th>
+                                    <th scope="col">Away</th>
+                                    <th scope="col">Score</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr th:each="favMatch, iterStat : ${matches}">
+                                    <th scope="row"><span th:text=${iterStat.count}></span></th>
+                                    <td><label th:text="${favMatch.HomeTeam}"></label></td>
+                                    <td><label th:text="${favMatch.HomeTeamScore}"></label></td>
+                                    <td><label th:text="${favMatch.AwayTeam}"></label></td>
+                                    <td><label th:text="${favMatch.AwayTeamScore}"></label></td>
+                                  </tr>
+                                  
+                                  </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br/>
+
+                    
+                    <form action="#" th:action="@{/fbfav}" method="get">
+                        <div class="d-flex justify-content-center mb-4 col-4 mx-auto">
+                                <button class="btn btn-primary btn-sm" type="submit">Return to Home</button>
+                        </div>
+                    </form>
+
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+           
+</body>
+</html>

@@ -1,0 +1,115 @@
+package com.miniproject.football.RedisConfig;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+import com.miniproject.football.Model.User;
+
+@Service
+public class RedisService implements RedisRepo {
+    private static final Logger logger = LoggerFactory.getLogger(User.class);
+
+    @Autowired
+    RedisTemplate<String, User> redisTemplate;
+
+    @Override
+    public void save(User theUser) {
+        redisTemplate.opsForValue().set(theUser.getName(), theUser);
+    }
+
+    @Override
+    public User get(String userName) {
+        User userobject = redisTemplate.opsForValue().get(userName);
+        return userobject;
+    }
+
+    @Override
+    public User checkuserexist(String userName, String email) {
+            if(redisTemplate.hasKey(userName)){
+                System.out.println("exist!!!!!!!!");
+                User userobject = redisTemplate.opsForValue().get(userName);
+                System.out.println(userobject.getEmail().toString());
+                System.out.println(email.toString());
+                if(userobject.getEmail().toString().equals(email.toString())){
+                    System.out.println("exist email");
+                    return userobject;
+                }
+                else{
+                    System.out.println("email DON'T exist");
+                    return userobject = null;
+                }
+        }
+        else{
+            System.out.println("name DON'T exist");
+            User userobject = null;
+            return userobject;
+        }
+    }
+
+    // // add this method to check if user exists in Redis
+    // public User getUserByEmail(String email) {
+    //     // search for the user in Redis using the email as the key
+    //     User user = redisTemplate.opsForValue().get(email);
+    //     if (user == null) {
+    //         // if user not found, return null
+    //         return null;
+    //     } else {
+    //         // if user found, return the user object
+    //         return user;
+    //     }
+    // }
+
+    @Override
+    public User delete(String userName) {
+        User userobject = redisTemplate.opsForValue().getAndDelete(userName);
+        return userobject;
+    }
+
+    @Override
+    public ArrayList<User> getAllUsers() {
+        Set<String> tempUsers = redisTemplate.keys("*");
+        ArrayList<User> Users = new ArrayList<>();
+        for (String user:tempUsers){
+            User userObj = get(user);
+            Users.add(userObj);
+            //For every user in tempUsers, save in Users
+        }
+        return Users;
+    }
+
+    @Override
+    public ArrayList<String> getAllEmail() {
+        Set<String> tempUsersEmail = redisTemplate.keys("*");
+        ArrayList<String> Users = new ArrayList<>();
+        for (String user:tempUsersEmail){
+            User userobject = redisTemplate.opsForValue().get(user);
+            Users.add(userobject.getEmail());
+            //For every user in tempUsers, save in Users
+        }
+        return Users;
+    }
+
+    @Override
+    public ArrayList<String> getAllTeam() {
+        Set<String> tempUsersTeam = redisTemplate.keys("*");
+        ArrayList<String> Users = new ArrayList<>();
+        for (String user:tempUsersTeam){
+            User userobject = redisTemplate.opsForValue().get(user);
+            Users.add(userobject.getHomeTeam());
+            //For every user in tempUsers, save in Users
+        }
+        return Users;
+    }
+
+    // @Override
+    // public User checkuserexist(String userName, String email) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'checkuserexist'");
+    // }
+}
